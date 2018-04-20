@@ -33,7 +33,6 @@ rpm -ql cacti|grep cacti.sql     # Will list the location of the package cacti s
                                  # In this case, the output is /usr/share/doc/cacti-1.0.4/cacti.sql, run that to populate your db
 mysql cacti < /usr/share/doc/cacti-1.1.37/cacti.sql -u cacti -p  
   
-mysql -u cacti -p cacti < /usr/share/doc/cacti-1.0.4/cacti.sql
 vim /etc/cacti/db.php            # Set database username and password in $database_username = ''; and $database_password = '';
 
 
