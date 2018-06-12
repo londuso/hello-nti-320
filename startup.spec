@@ -45,11 +45,19 @@ install -m 0744 nti320.cfg %{buildroot}/etc/nrpe.d/
 
 
 %post
+nagiosip=""
+rsyslogip=""
 
 touch /thisworked
 systemctl enable snmpd
 systemctl start snmpd
 sed -i 's,/dev/hda1,/dev/sda1,'  /etc/nagios/nrpe.cfg
+sed -i 's/allowed_hosts=127.0.0.1/allowed_hosts=127.0.0.1, "$nagiosip"/g' /etc/nagios/nrpe.cfg
+echo "*.info;mail.none;authpriv.none;cron.none   @$rsyslogip" >> /etc/rsyslog.conf && systemctl restart rsyslog.service
+
+systemctl enable nrpe
+systemctl restart nrpe
+systemctl restart rsyslog
 
 %postun
 rm /thisworked
