@@ -10,7 +10,7 @@ touch /etc/snmp/snmpd.conf
 
 
 # edit snmpd.conf file /etc/snmp/snmpd.conf
-echo '# create myuser in mygroup authenticating with 'public' community string and source network 10.128.0.5/24
+echo '# create myuser in mygroup authenticating with 'public' community string and source network 10.128.0.0/24
 com2sec myUser 10.128.0.0/24 public
 # myUser is added into the group 'myGroup' and the permission of the group is defined
 group    myGroup    v1        myUser
